@@ -14,6 +14,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,9 @@ const LoginScreen = () => {
       password: password,
     };
 
-    console.log(user);
+    //console.log(user);
+    let token = ''
+    AsyncStorage.setItem('authToken', token)
   };
 
   return (
