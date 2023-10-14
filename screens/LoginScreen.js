@@ -9,27 +9,38 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
-import React from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/authContext";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { useState } from "react";
+
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
+ 
+  // global state
+  const [state, setState] = useContext(AuthContext)
+
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const user = {
       email: email,
       password: password,
     };
 
+
+
     //console.log(user);
-    let token = ''
-    AsyncStorage.setItem('authToken', token)
+    let token = 'xxyyzz'
+    setState(user)
+    await AsyncStorage.setItem('authToken', token)
+    //alert(data && data.message)
+    navigation.navigate("Home")
   };
 
   return (
